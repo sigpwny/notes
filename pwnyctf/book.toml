@@ -8,7 +8,7 @@ title = "Pwny CTF Docs"
 [output.html]
 mathjax-support = true
 default-theme = "navy"
-site-url = "/docs/"
+site-url = "/pwnyctf-docs/"
 preferred-dark-theme = "navy"
 git-repository-url  = "https://github.com/sigpwny/guides"
 edit-url-template = "https://github.com/sigpwny/guides/edit/main/pwnyctf/{path}"
