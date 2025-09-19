@@ -1,10 +1,6 @@
 # On file change, update submodule of sigpwny/notes.sigpwny.com using a CI bot commit.
 name: Sync notes changes to sigpwny/notes.sigpwny.com
-on:
-  push:
-    paths:
-      - '*/**'
-      - '!./README.md'
+on: push
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
