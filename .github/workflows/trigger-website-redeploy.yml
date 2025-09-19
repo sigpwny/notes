@@ -1,5 +1,5 @@
-# On file change, update submodule of sigpwny/websites using a CI bot commit.
-name: Deploy guide changes to sigpwny/websites
+# On file change, update submodule of sigpwny/notes.sigpwny.com using a CI bot commit.
+name: Sync notes changes to sigpwny/notes.sigpwny.com
 on:
   push:
     paths:
@@ -18,9 +18,9 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with: 
-          repository: sigpwny/websites
+          repository: sigpwny/notes.sigpwny.com
           submodules: true
       - name: Pull & update submodules recursively
         run: |
@@ -28,8 +28,8 @@ jobs:
           git submodule update --recursive --remote
       - name: Commit
         run: |
-          git config user.email "ci@sigpwny.com"
-          git config user.name "GitHub Actions - update submodules"
+          git config user.email "hello@sigpwny.com"
+          git config user.name "SIGPwny CI/CD"
           git add --all
-          git commit -m "Update submodules" || echo "No changes to commit"
+          git commit -m "sync: sigpwny/notes" || echo "No changes to commit"
           git push
