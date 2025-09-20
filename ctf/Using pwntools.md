@@ -1,4 +1,4 @@
-# A Primer on pwntools
+# A Primer on `pwntools`
 
 ## Introduction
 

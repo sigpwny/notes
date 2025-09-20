@@ -1,5 +1,5 @@
 ---
-titile: Miscellaneous
+title: Miscellaneous
 ---
 # Misc
 

@@ -33,7 +33,7 @@ Calling `square` will store three things on the stack:
 - The result variable
   
 
-![](fallctf-2024/images/pwn/stack.png)
+![](guides/fallctf-2024/images/pwn/stack.png)
 
 
 
@@ -53,7 +53,7 @@ int main(){
 
 `gets` has a massive security flaw, **it does not restrict the number of bytes read.** `gets` doesn't return until you send a terminating character (e.g. newline), thus it'll read over any predefined buffer that you make. Consider the structure of the stack:
 
-![](fallctf-2024/images/pwn/gets.png)
+![](guides/fallctf-2024/images/pwn/gets.png)
 
 If we read more than 8 bytes (characters), what would happen to `result`? What about the saved base or return pointers?
 
