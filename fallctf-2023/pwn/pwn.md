@@ -4,16 +4,16 @@ title: PWN
 # Binary Exploitation (pwn)
 
 ## Introduction
-When we run a program, we expect it to take input data, whether it be through files, user input, or internet connections, and produce meaningful output. The underlying code of the program handles all the logic and control flow within the program. However, either from quirks of the language used, or oversights from the programmer themselves, it's possible to introduce bugs that allow end users of a program to take control of the program in unintended ways.
+When we run a program, we expect it to take input data, whether it be through files, user input, or internet connections, and produce meaningful output. The code backing the program handles all the logic and control flow within the program. However, either from quirks of the language used, or oversights from the programmer themselves, it's possible to introduce bugs that allow end users of a program to take control of it in unintended ways.
 
-This is the core goal of binary exploitation: Take a binary executable, provide it with input data to take control of the control flow or corrupt internal structures, and have it do something unintended (and usually unsafe). Executables often interact with files on the host computer, or run other programs (through functions like `system` or `exec`). If a user only has an exposed text interface over the network of a running program, it is intended that they are only ever interacting with the program as written. If they provide malicious input causes the program to read secure files, or open a shell session on the host machine, it suddenly becomes a major security vulnerability for the host machine.
+This is the core goal of binary exploitation: Take a binary executable, provide it with input data to take control of its control flow or corrupt its internal structures, and have it do something unintended (and usually unsafe). Executables often interact with files on the host computer, or run other programs (through functions like `system` or `exec`). If a user only has an exposed text interface over the network of a running program, it is intended that they are only ever interacting with the program as written. If they provide malicious input that reads secure files, or opens a shell session on the host machine, it suddenly becomes a major security vulnerability for the host machine.
 
 ### Fall CTF
 We have provided a series of challenges designed to explore and teach the fundamentals of how program handle data and control flow, and how unsafe programming practices allow a user to take control of these programs without having access to the host machine, yet able to access the host's filesystem and programs.
 
-**Pwn is hard.** To begin, you need to be fairly comfortable with programming (or at least understanding code) in a lower level language (like C or C++). This post will attempt to explain underlying structures when running a program, but if you still feel stuck, feel free to ask for help from sigpwny members, or googling around about C functions and syntax. `man` pages are your friend. We want you to engage with these challenge as much as possible, so there are several hints and annotations within the code to help you get started.
+**Pwn is hard.** To begin, you need to be fairly comfortable with programming (or at least understanding code) in a lower level language (like C or C++). This post will attempt to explain underlying structures when running a program, but if you still feel stuck, feel free to ask for help from sigpwny members, or googling around about C functions and syntax. `man` pages are your friend.
 
-As you read this guide, try each of the challenges. We give the executables and Makefiles for you to run, build, and debug locally. You can build with just `make`. If you get stuck, or unsure how to proceed in any challenge, return here and read each of the following sections carefully. Relevant sections will mention challenges that should be solvable after reading said section, although some additional googling/debugging/trial and error will be necessary.
+Try each of the challenges, we give the executables and Makefiles for you to run, build, and debug locally. You can build with just `make`. If you have docker, you can use build a Dockerfile with `docker build -t "pwn1" .`. Likely for these chals, you won't need a dockerfile. If you get stuck, or unsure how to proceed in any challenge, return here and read each of the following sections carefully. Relevant sections will mention challenges that should be solvable after reading said section, although some additional googling/debugging/trial and error will be necessary.
 
 ## What is a Stack?
 The stack is how programs manage memory per function call. Whenever you define a variable within a function, it's stored on the stack:
@@ -33,7 +33,7 @@ Calling `square` will store three things on the stack:
 - The result variable
   
 
-![](fallctf-2024/pwn/images/stack.png)
+![](fallctf-2023/images/pwn/stack.png)
 
 
 
@@ -44,16 +44,16 @@ When square returns, it will pop everything off the stack. This is why you often
 
 ```c
 int main(){
-    int result = 15
+    int exit_val = 15
     char buf[8];
     gets(buf);
-    return result;
+    return exit_val;
 }
 ```
 
 `gets` has a massive security flaw, **it does not restrict the number of bytes read.** `gets` doesn't return until you send a terminating character (e.g. newline), thus it'll read over any predefined buffer that you make. Consider the structure of the stack:
 
-![](fallctf-2024/pwn/images/gets.png)
+![](fallctf-2023/images/pwn/gets.png)
 
 If we read more than 8 bytes (characters), what would happen to `result`? What about the saved base or return pointers?
 
@@ -61,11 +61,10 @@ We can set the value of these via a Buffer Overflow. If we read more than we hav
 
 
 ### Fall CTF
-Try to solve Bug Bounty 1 and 2. If you get stuck on Bug Bounty 3, continue on.
+Try to attempt and solve Overflow and Manipulate Challenges. If you get stuck on Return, read on to the next section.
 ## How do Functions Return?
 We're going to scope down a bit, and look at a bit of assembly for a function:
 ```asm
-// function code omitted...
 leave
 ret
 ```
@@ -82,7 +81,7 @@ But again, we store the return address on the stack. This means if we have a buf
 You can view in gdb or a disassembler the location programs store functions. If you dont want to use such tools, `objdump -d challenge` will also print out the dissassembly of all the functions, and their hex locations.
 
 ### Fall CTF
-Attempt to Bug Bounty 3. Once you do, you can read the next section to have the necessary knowledge for Bug Bounty 4 and 5.
+Attempt to do the Return challenge. Once you do, you can read the next section to have the necessary knowledge for Execute and Format 
 
 ## How do Programs Read and Execute Code?
 We mentioned before that the processor maintains a position in program memory of the current instruction it is executing. This pointer is again stored in the instruction pointer register: `rip`. Now, assembly just *assembles* into bytes. It's just a very simple abstraction layer over actual bytes that the processor reads as machine codes. This means, that the series of bytes `c9c3`, if read as code, would be the same as `leave; ret`.
@@ -91,9 +90,9 @@ This means that code, is just data. If we choose our data carefully, we can have
 
 ### Fall CTF
 
-In Bug Bounty 4, the stack is executable. What happens when we place code on the stack, and we know the address of the stack?
+In the Execute challenge, the stack is executable. What happens when we place code on the stack, and we know the address of the stack?
 
-It might be helpful to google shellcode and shellcode exploits. Additionally, look into the `asm()` function in pwntools.
+It might be helpful to google shellcode and shellcode exploits.
 
 
 ## Format Vulnerability
@@ -121,8 +120,4 @@ printf("%4d",int1,int2,int3,int4,int5)
 ```
 
 ### Fall CTF
-Try Bug Bounty 5 to leak the stack and run shellcode.
-
-## Everything is C
-
-With FFI to Win, it might feel very similar to earlier Bug Bounty challenges, but on the web! Be on the lookout anywhere you think a service, website, or program might be able to give you access on the host machine.
+Try the Format challenge to leak the stack and run shellcode.

@@ -19,7 +19,7 @@ When you click on a link within your browser, your computer makes a request to a
 
 When content is sent between your computer and the server, it includes additional metadata called "Headers". Some of this data remains in your browser, either as **cookies** or **local storage** (technically more kinds).
 
-![](fallctf-2023/web/images/network.png)
+![](fallctf-2024/images/web/network.png)
 
 - Cookies are saved per website, and are sent in each request. They can be changed by Javascript or a request header.
 - Local Storage is saved per website, but are not sent in each request. They can be changed by Javascript in your browser.
@@ -30,13 +30,13 @@ Developer tools is how you view additional website about an information. For our
 
 To open devtools, hit `Ctrl + Shift + C` (windows) or `Command + Shift + C` (mac). Alternatively, right click and hit inspect.
 
-![](fallctf-2023/web/images/inspect_context.png)
+![](fallctf-2024/images/web/inspect_context.png)
 
 Chrome Devtools is a suite of software developer information for web development. During challenges, you will be able to poke around different tabs. Here are some helpful tabs to lookout for:
 
 * Console (you can run your own javascript in this tab)
 
-![](fallctf-2023/web/images/console.png)
+![](fallctf-2024/images/web/console.png)
 
 Pro Tip: You can use breakpoints within the console by clicking next to the line number. This can allow you to stop at certain lines before the run and check variables
 
@@ -46,30 +46,30 @@ The network tab shows all information transmitted to/from your computer to the s
 
 ![](./images/network2.png)
 
-![](fallctf-2023/web/images/network_3.png)
+![](fallctf-2024/images/web/network_3.png)
 
 * Sources
 
 The sources tab shows a listing of all files on the server that were requested.
 
-![](fallctf-2023/web/images/sources.png)
+![](fallctf-2024/images/web/sources.png)
 
 * Application
 
 The application tab shows the saved cookies, local storage, and other information stored in your browser.
 
-![](fallctf-2023/web/images/application.png)
+![](fallctf-2024/images/web/application.png)
 
 This is not an exhaustive list, but just a few useful tabs within Devtools.
 
 ## Encodings you should know about:
 
 base64 - Looks like this 
-![](fallctf-2023/web/images/base64.png)
+![](fallctf-2024/images/web/base64.png)
 
 url encoding - Looks like this
 
-![](fallctf-2023/web/images/url_encode.png)
+![](fallctf-2024/images/web/url_encode.png)
 
 You can use [CyberChef](https://gchq.github.io/CyberChef/) to decode.
 
@@ -85,7 +85,7 @@ For example,
 SELECT netid, firstname FROM students WHERE lastname = "Tables"
 ```
 
-![Alt text](fallctf-2023/web/images/sql.png)
+![Alt text](fallctf-2024/images/web/sql.png)
 
 If code is written incorrectly, you can modify an SQL Statement as shown above.
 
@@ -128,5 +128,32 @@ If you want more resources on learning the linux command line...
 
 + Review our [Setup/Terminal Meeting Slides](https://sigpwny.com/meetings/fa2023/2023-09-03/)
 
-## Cross Site Scripting (XSS)
+## Cross-Site Scripting (XSS)
 
+Cross-Site Scripting is a vulnerability that allows an attacker to execute malicious scripts on a website. This can be used to steal cookies, redirect users to malicious websites, or deface the website.
+
+I like to think of XSS as as another type of injection attack, but instead of injecting into a database or command line, you're injecting into the website's HTML.
+
+For example, let's say you have a website that displays a user's name on the page. If the website includes the input directly into the HTML, you can put your own HTML code in the input and have it execute on the page.
+
+```html
+<p>Welcome, <span id="username">USER INPUT</span></p>
+```
+
+If I had set `USER INPUT` to `<script>alert("Hello!")</script>`, then the website would display a popup saying "Hello!".
+
+```html
+<p>Welcome, <span id="username"><script>alert("Hello!")</script></span></p>
+```
+
+More details on XSS: https://portswigger.net/web-security/cross-site-scripting
+
+A useful resource for receiving requests is [webhook.site](https://webhook.site/). For example, if you need to extract some data from a website, you can have your XSS payload send a request to your webhook.site URL with the data you need.
+
+Be careful when exfiltrating data to make sure the data on the page you are trying to extract is actually loaded. Also, make sure to go to `edit` and enable `Add CORS Headers` to allow the admin's browser to make requests to the site.
+
+```js
+window.addEventListener('load', () => {
+    // ... your code here
+});
+```
