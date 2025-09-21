@@ -1,4 +1,4 @@
 ---
 title: Fall CTF 2025
 ---
-Coming soon :)
+`fallctf{read_the_docs}`
