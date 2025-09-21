@@ -81,6 +81,7 @@ The relevant properties of the XOR operation is that:
 
 ## Modern Ciphers
 
+### Asymmetric cryptography
 Modular arithmetic is much more useful than what was previously advertised when talking about classical ciphers. A major theme of cryptography is the idea of a trapdoor: something that is easy to enter one way but hard to escape from the other way. Prime numbers give us this trapdoor. It is incredibly easy for us (or rather, our computers) to multiply two numbers, even if those numbers are 512 bits long or even 1024 bits long. However, factoring numbers into primes is computationally difficult. This trapdoor will be the basis of the **RSA cryptosystem, named after Rivest, Shamir, and Adleman**.
 
 Interestingly enough, RSA is an *asymmetric* encryption instead of a symmetric one. This means the sender of a message does not have to know the secret key to be able to successfully encrypt a message. The math almost magically seems to work out! The goal of challenges like this will be to try to identify some, or all, of the secret information to be able decrypt the flag.
@@ -94,6 +95,10 @@ $$m = c^d \mod n$$
  Using [PyCryptodome](https://www.pycryptodome.org/), it is possible to convert text data into large integers, which are used for RSA. Since `d` is kept secret, and `p, q, n` are sufficiently large enough, it would in theory be too hard to factor `p, q`. 
  
  But if the values were safely chosen, this wouldn't be a CTF now would it?
+
+### Symmetric cryptography and block ciphers
+A common symmetric encryption scheme is *AES* (the Advanced Encryption Standard). You can read more about it [here](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard). AES is a block cipher, which means that it operates a single block of the input plaintext/ciphertext at a time (AES blocks are always 128 bits) when encrypting/decrypting. This obviously raises the question of what to do if we want to encrypt a plaintext longer than 128 bits. To do so, we split the plaintext into 128-bit blocks and use a block cipher *mode of encryption* to encrypt multiple blocks. You can learn more about modes of encryption [here](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation). Note that while AES itself is believed to be secure, it may not be secure when used with certain modes of encryption. 
+
 ## General Advice
 
  - Every challenge author has their own way of converting between messages and numbers and bytes and other data formats. Read the source code and make sure you know how these are being done and what objects you are working with. Whatever they are doing to convert the flag into workable data, doing the reverse of that should be part of your decryption.
