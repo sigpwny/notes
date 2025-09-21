@@ -1,6 +1,7 @@
 ---
 title: Badge
 ---
+
 # Fall CTF 2025 Badge
 
 The Fall CTF 2025 badge is your all-in-one connectivity tool and gaming device for Fall CTF 2025. It contains an ESP32-S2 module with Wi-Fi, allowing for seamless communication between multiple badges. Each badge also has an accelerometer and joystick for interactive control. To power the device, each badge features a 400mAh 3.7V Li-po battery. The badge runs Micropython for ease-of-use and hacking.
@@ -21,6 +22,7 @@ sudo usermod -a -G dialout $USER
 If you are getting an error with `mpremote` command not found, try replace it with `python3 -m mpremote` (in all the commands below).
 
 Install the `mpremote` Python package to connect to the badge:
+
 ```sh
 pip install --user mpremote
 ```
@@ -36,3 +38,8 @@ To get the boot flag, connect the badge to the computer and run `mpremote`. Pres
 Check out the src.zip for the source code. Run `mpremote ls` to list files and `mpremote cp :src.zip .` to copy files from the device (in this example, `src.zip`).
 
 After modifying a `.py` file, Run `mpremote cp file.py :` to upload the updated code to the badge.
+
+To reboot the badge after uploading a file, either
+
+- Press the small button on the back left of the badge (next to the battery and the switch).
+- Connect with `mpremote`, then press `Ctrl`+`D`. (If nothing happens, try pressing `Ctrl`+`C` first.)
