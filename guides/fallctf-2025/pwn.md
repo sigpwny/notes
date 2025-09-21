@@ -3,6 +3,9 @@ title: PWN
 ---
 # Binary Exploitation (pwn)
 
+> ![TIP]
+> Many pwn challenges will require an x86 system in order to run the ELF program binaries. Because modern Apple silicon Macs are using ARM architecture, it is difficult to attempt the pwn challenges directly on Macs. We recommend using the [Linux EWS](https://answers.uillinois.edu/illinois.engineering/page.php?id=79993) systems provided by the university's engineering IT.
+
 ## Introduction
 When we run a program, we expect it to take input data, whether it be through files, user input, or internet connections, and produce meaningful output. The underlying code of the program handles all the logic and control flow within the program. However, either from quirks of the language used, or oversights from the programmer themselves, it's possible to introduce bugs that allow end users of a program to take control of the program in unintended ways.
 
