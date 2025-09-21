@@ -19,7 +19,7 @@ When you click on a link within your browser, your computer makes a request to a
 
 When content is sent between your computer and the server, it includes additional metadata called "Headers". Some of this data remains in your browser, either as **cookies** or **local storage** (technically more kinds).
 
-![](guides/fallctf-2023/images/web/network.png)
+![](images/web/network.png)
 
 - Cookies are saved per website, and are sent in each request. They can be changed by Javascript or a request header.
 - Local Storage is saved per website, but are not sent in each request. They can be changed by Javascript in your browser.
@@ -30,13 +30,13 @@ Developer tools is how you view additional website about an information. For our
 
 To open devtools, hit `Ctrl + Shift + C` (windows) or `Command + Shift + C` (mac). Alternatively, right click and hit inspect.
 
-![](guides/fallctf-2023/images/web/inspect_context.png)
+![](images/web/inspect_context.png)
 
 Chrome Devtools is a suite of software developer information for web development. During challenges, you will be able to poke around different tabs. Here are some helpful tabs to lookout for:
 
 * Console (you can run your own javascript in this tab)
 
-![](guides/fallctf-2023/images/web/console.png)
+![](images/web/console.png)
 
 Pro Tip: You can use breakpoints within the console by clicking next to the line number. This can allow you to stop at certain lines before the run and check variables
 
@@ -46,30 +46,30 @@ The network tab shows all information transmitted to/from your computer to the s
 
 ![](./images/network2.png)
 
-![](guides/fallctf-2023/images/web/network_3.png)
+![](images/web/network_3.png)
 
 * Sources
 
 The sources tab shows a listing of all files on the server that were requested.
 
-![](guides/fallctf-2023/images/web/sources.png)
+![](images/web/sources.png)
 
 * Application
 
 The application tab shows the saved cookies, local storage, and other information stored in your browser.
 
-![](guides/fallctf-2023/images/web/application.png)
+![](images/web/application.png)
 
 This is not an exhaustive list, but just a few useful tabs within Devtools.
 
 ## Encodings you should know about:
 
 base64 - Looks like this 
-![](guides/fallctf-2023/images/web/base64.png)
+![](images/web/base64.png)
 
 url encoding - Looks like this
 
-![](guides/fallctf-2023/images/web/url_encode.png)
+![](images/web/url_encode.png)
 
 You can use [CyberChef](https://gchq.github.io/CyberChef/) to decode.
 
@@ -85,7 +85,7 @@ For example,
 SELECT netid, firstname FROM students WHERE lastname = "Tables"
 ```
 
-![Alt text](guides/fallctf-2023/images/web/sql.png)
+![Alt text](images/web/sql.png)
 
 If code is written incorrectly, you can modify an SQL Statement as shown above.
 
