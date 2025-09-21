@@ -97,7 +97,7 @@ Above is a picture of the decompilation (disclaimer: this is not a challenge
 from Fall CTF). Almost every function you see will have an if statement with
 **\_\_stack_chk_fail** at the bottom. This is a check for the stack canary,
 which is not relevant to any challenges here. It may be of more interest in
-pwn challenge. The "local_10 = \*(long \*)(in_FS_OFFSET + 0x28);" line
+pwn challenges. The "local_10 = \*(long \*)(in_FS_OFFSET + 0x28);" line
 at the top sets up the stack canary and can also be ignored.
 
 Note that the variables are named with undescriptive names, such as
