@@ -43,3 +43,7 @@ To reboot the badge after uploading a file, either
 
 - Press the small button on the back left of the badge (next to the battery and the switch).
 - Connect with `mpremote`, then press `Ctrl`+`D`. (If nothing happens, try pressing `Ctrl`+`C` first.)
+
+If you are modifying a large file, such as `asteroids_game.py`, the device may complain about being out of memory. To resolve this, compile the file to bytecode using mpy-cross. Run `pip install mpy-cross` to install mpy-cross. Then, compile the file with `mpy-cross asteroids_game.py`. Finally, upload the file to the device with `mpremote cp asteroids_game.mpy :`.
+
+Note that micropython python will load files in the following order: `.py` -> `.mpy` -> frozen files. By default, all our code is frozen. To override any module, simply include the .py or .mpy file in the top level directory. If there are both .py and .mpy files, the .py file will be used. The .mpy file uses significantly less memory, as micropython does not need to compile it.
