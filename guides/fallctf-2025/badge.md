@@ -27,3 +27,5 @@ To get the boot flag, connect the badge to the computer and run `mpremote`. Pres
 ## Badge hacking
 
 Check out the src.zip for the source code. Run `mpremote ls` to list files and `mpremote cp :src.zip .` to copy files from the device (in this example, `src.zip`).
+
+After modifying a `.py` file, Run `mpremote cp file.py :` to upload the updated code to the badge.
