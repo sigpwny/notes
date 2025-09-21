@@ -13,6 +13,11 @@ There is a USB-C port on the side of the badge, which is intended to connect to 
 
 ### Software setup
 
+If you are on Linux, you may need to add your user to the `dialout` group to allow it to access the serial ports. Run the following command, then log out and log back in.
+```sh
+sudo usermod -a -G dialout $USER
+```
+
 Install the `mpremote` Python package to connect to the badge:
 ```sh
 pip install --user mpremote
