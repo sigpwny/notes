@@ -3,7 +3,7 @@ title: PWN
 ---
 # Binary Exploitation (pwn)
 
-> ![TIP]
+> [!TIP]
 > Many pwn challenges will require an x86 system in order to run the ELF program binaries. Because modern Apple silicon Macs are using ARM architecture, it is difficult to attempt the pwn challenges directly on Macs. We recommend using the [Linux EWS](https://answers.uillinois.edu/illinois.engineering/page.php?id=79993) systems provided by the university's engineering IT.
 
 ## Introduction
