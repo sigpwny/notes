@@ -19,7 +19,8 @@ If you are on Linux, you may need to add your user to the `dialout` group to all
 sudo usermod -a -G dialout $USER
 ```
 
-If you are getting an error with `mpremote` command not found, try replace it with `python3 -m mpremote` (in all the commands below).
+If you are getting an error with `mpremote` command not found, try replace it with `python3 -m mpremote` (in all the commands below). If there is a permissions error use: `sudo apt update`, `sudo apt install -y pipx python3-venv`, `pipx ensurepath`, # then open a new shell or: `exec $SHELL -l`, `pipx install mpremote`, 
+`mpremote --help`
 
 Install the `mpremote` Python package to connect to the badge:
 
