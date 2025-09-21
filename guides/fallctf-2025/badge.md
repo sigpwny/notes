@@ -20,6 +20,10 @@ pip install --user mpremote
 
 From there, type `mpremote` to open a REPL on the badge. Press Ctrl-C to interrupt the current running program and Ctrl-D to reboot the badge. Press Ctrl-X to exit the prompt.
 
+### Boot flag
+
+To get the boot flag, connect the badge to the computer and run `mpremote`. Press Ctrl-C to interrupt the running program and Ctrl-D to reboot to get the boot flag.
+
 ## Badge hacking
 
 Check out the src.zip for the source code. Run `mpremote ls` to list files and `mpremote cp :src.zip .` to copy files from the device (in this example, `src.zip`).
