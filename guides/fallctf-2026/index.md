@@ -1,4 +1,4 @@
 ---
 title: Fall CTF 2026
 ---
-`fallctf{read_the_docs}`
+`fallctf{read_the_friendly_manual}`
