@@ -96,6 +96,9 @@ $$m = c^d \mod n$$
  
  But if the values were safely chosen, this wouldn't be a CTF now would it?
 
+### Lattices
+Lattices show up surprisingly often in cryptography, and the **LLL algorithm** is one of the main tools used to work with them: given a lattice basis, LLL finds a new basis containing relatively short, nearly orthogonal vectors, which can reveal small hidden integer relationships in a challenge. There are plenty of applications, with the classical examples including [Coppersmith's method](https://en.wikipedia.org/wiki/Coppersmith_method) for finding small roots of polynomial equations and attacks on the [knapsack problem](https://mathweb.ucsd.edu/~crypto/Projects/JenniferBakker/Math187/).
+
 ### Symmetric cryptography and block ciphers
 A common symmetric encryption scheme is *AES* (the Advanced Encryption Standard). You can read more about it [here](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard). AES is a block cipher, which means that it operates a single block of the input plaintext/ciphertext at a time (AES blocks are always 128 bits) when encrypting/decrypting. This obviously raises the question of what to do if we want to encrypt a plaintext longer than 128 bits. To do so, we split the plaintext into 128-bit blocks and use a block cipher *mode of encryption* to encrypt multiple blocks. You can learn more about modes of encryption [here](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation). Note that while AES itself is believed to be secure, it may not be secure when used with certain modes of encryption. 
 
