@@ -4,6 +4,8 @@ title: Badge
 
 # Fall CTF 2026 Badge
 
+> **Note:** Due to supply constraints, the badge challenge is not included in the CTF. However, you can still solve the challenges for fun!
+
 The Fall CTF 2026 badge is your all-in-one connectivity tool and gaming device for Fall CTF 2026. It contains an ESP32-S2 module with Wi-Fi, allowing for seamless communication between multiple badges. Each badge also has an accelerometer and joystick for interactive control. To power the device, each badge features a 400mAh 3.7V Li-po battery. The badge runs Micropython for ease-of-use and hacking.
 
 ## Connect your badge to your computer
